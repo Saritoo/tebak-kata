@@ -1,234 +1,186 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en-US">
 
-	<head>
-		<meta charset="utf-8">
-        <title>Game Kata</title>
-        <meta name="description" content="The description should optimally be between 150-160 characters.">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="AMWP">
-        <link rel="stylesheet" href="css/font-awesome.min.css" />
-        <link rel="stylesheet" href="css/font-awesome.css" />
-		<link href="https://fonts.googleapis.com/css?family=Macondo" rel="stylesheet"/>
-        
-		<script src="sweetalert2/sweetalert2.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
-		<link href="https://fonts.cdnfonts.com/css/magical-mystery" rel="stylesheet">
-		<link href="https://fonts.cdnfonts.com/css/easy-listening" rel="stylesheet">
-		<link href="https://fonts.cdnfonts.com/css/seven-deadly-sins" rel="stylesheet">
-		    <script src="https://cdn.rawgit.com/adriancooney/console.image/c9e6d4fd/console.image.min.js"></script>
-		<style>
-			/* Style the link to look like a button */
-			/* Custom styles for SweetAlert2 */
-			    /* Custom font */
-				@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
-    body .swal2-title, body .swal2-content, body .swal2-cancel, body .swal2-confirm {
-      font-family: 'Open Sans', sans-serif;
-	  font-size: smaller;
-    }
-	
-			.swal2-popup {
-			  font-size: 1.2rem;
-			}
-			.swal2-title {
-			  margin-top: 0;
-			  font-weight: bold;
-			  font-size: 1.5rem;
-			}
-			.swal2-content {
-			  font-size: 1.2rem;
-			  margin-bottom: 20px;
-			}
-			.swal2-cancel, .swal2-confirm {
-			  background-color: #b22222;
-			  color: #fff;
-			  border: none;
-			  border-radius: 5px;
-			  font-size: 1.2rem;
-			  padding: 10px 20px;
-			  cursor: pointer;
-			}
-			.swal2-cancel:hover, .swal2-confirm:hover {
-			  background-color: #0c7cd5;
-			}
-			.swal2-cancel:active, .swal2-confirm:active {
-			  background-color: #0a5fa5;
-			}
-		  </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Kata</title>
+    <meta name="description" content="Optimal description length between 150-160 characters.">
+    <meta name="author" content="AMWP">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link href="https://fonts.googleapis.com/css?family=Macondo" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+    <link href="https://fonts.cdnfonts.com/css/magical-mystery" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/easy-listening" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/seven-deadly-sins" rel="stylesheet">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon-retina-ipad.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon-retina-iphone.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon-standard-ipad.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon-standard-iphone.png">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+        body.swal2-title, body.swal2-content, body.swal2-cancel, body.swal2-confirm {
+            font-family: 'Open Sans', sans-serif;
+            font-size: smaller;
+        }
+
+       .swal2-popup {
+            font-size: 1.2rem;
+        }
+
+       .swal2-title {
+            margin-top: 0;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+       .swal2-content {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+       .swal2-cancel,.swal2-confirm {
+            background-color: #b22222;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+       .swal2-cancel:hover,.swal2-confirm:hover {
+            background-color: #0c7cd5;
+        }
+
+       .swal2-cancel:active,.swal2-confirm:active {
+            background-color: #0a5fa5;
+        }
+
+		.global-overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.8); /* Adjust opacity as needed */
+			z-index: -1; /* Set to a lower value */
+		}
 		
-
-
-        <!-- ================= Favicon ================== -->
-        <!-- Standard -->
-        <link rel="shortcut icon" href="img/favicon.png">
-        <!-- Retina iPad Touch Icon-->
-        <link rel="apple-touch-icon" sizes="144x144" href="img/favicon-retina-ipad.png">
-        <!-- Retina iPhone Touch Icon-->
-        <link rel="apple-touch-icon" sizes="114x114" href="img/favicon-retina-iphone.png">
-        <!-- Standard iPad Touch Icon--> 
-        <link rel="apple-touch-icon" sizes="72x72" href="img/favicon-standard-ipad.png">
-        <!-- Standard iPhone Touch Icon--> 
-        <link rel="apple-touch-icon" sizes="57x57" href="img/favicon-standard-iphone.png">
-
-        <!-- ============== Resources style ============== -->
-        <link rel="stylesheet" href="css/style.css" />
-
-		<!-- Modernizr runs quickly on page load to detect features -->
+		footer {
+			position: relative; /* Ensure footer stays in the document flow */
+			z-index: 1; /* Set to a higher value than other content */
+		}
 		
-	</head>
-	
-	<body>
-		<!-- Page preloader -->
-		<div id="loading">
-			<div id="preloader">
-				<span></span>
-				<span></span>
-			</div>
-		</div>
+    </style>
+</head>
 
-		<!-- Overlay and Star effect -->
-		<div class="global-overlay">
-			<div class="overlay skew-part">
+<body>
+    <div id="loading">
+        <div id="preloader">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
 
-				<div id='stars'></div>
-				<div id='stars2'></div>
-				<div id='stars3'></div>
+    <div class="global-overlay">
+        <div class="overlay skew-part">
+            <div id='stars'></div>
+            <div id='stars2'></div>
+            <div id='stars3'></div>
+        </div>
+    </div>
 
-			</div>
-		</div>
+    <section id="left-side">
+        <img src="img/logo.png" alt="" class="brand-logo">
+        <div class="content">
+            <h1 class="text-intro opacity-0">Game Kata<br></h1>
+            <p class="text-intro opacity-0">Tebak Kata nya dan menangkan game nya</p>
+            <br>
+            <nav>
+                <ul>
+                    <li><a id="helpButton" href="#" class="light-btn text-intro opacity-0 mainButton">BANTUAN</a></li>
+                    <li><a onclick="window.location='level/selector.html';" class="action-btn trigger text-intro opacity-0 mainButton">BERMAIN</a></li>
+                    <li><a onclick="window.location='belajar/belajar.html';" class="light-btn trigger text-intro opacity-0 mainButton">MENULIS</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="social-icons"></div>
+    </section>
 
-		<!-- START - Home/Left Part -->
-		<section id="left-side">
+    <footer>
+        <p style="color:white">Dibuat dengan &hearts; oleh Kelompok 7</p>
+        <button style="background-color: #b22222; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;" onclick="window.location='about.html';">Kelompok</button>
+    </footer>
 
-			<!-- Your logo -->
-			<img src="img/logo.png" alt="" class="brand-logo" />
+    <script src="https://unpkg.com/sweetalert2@11.7.5/dist/sweetalert2.all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script>
+        var sound = new Howl({
+            src: ['resources/sounds/Primavera.wav'],
+            autoplay: true,
+            loop: true,
+            onplay: function() {
+                console.log('Audio started playing.');
+            }
+        });
+        sound.play();
 
-			<div class="content">
+        document.getElementById('helpButton').addEventListener('click', function() {
+            swal.fire({
+                title: "Selamat Datang di Game Kata",
+                text: "Game Ini memiliki total 20 level, kamu harus menjawab dengan benar",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Next",
+                cancelButtonText: "Cancel"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    swal.fire({
+                        title: "Cara bermain",
+                        text: "Menebak kata yang ada dalam gambar",
+                        icon: "question",
+                        showCancelButton: true,
+                        confirmButtonText: "Next",
+                        cancelButtonText: "Cancel"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            swal.fire({
+                                text: "Maaf Design yang tidak sebarapa, karena game ini bukan dibuat oleh anak IT :)",
+                                icon: "success",
+                                button: "OK"
+                            });
+                        } else if (result.dismiss === swal.DismissReason.cancel) {
+                            console.log("done");
+                        }
+                    });
+                } else if (result.dismiss === swal.DismissReason.cancel) {
+                    console.log("done");
+                }
+            });
+        });
 
-				<h1 class="text-intro opacity-0">Game Kata<br></h1>
+        console.log('Halaman berhasil di muat, silahkan bermain!!');
+        console.meme("don't be a cheater", "stupid people.", "Awkward Penguin", 400, 300);
 
-				<p class="text-intro opacity-0">Tebak Kata nya dan menangkan game nya</p>
-				<br>
-
-				<nav>
-					<ul>
-						<li>
-							<a id="helpButton" href="#" class="light-btn text-intro opacity-0 mainButton">BANTUAN</a>
-						</li>
-						<li>
-							<a onclick="window.location='level/selector.html';" class="action-btn trigger text-intro opacity-0 mainButton">BERMAIN</a>
-						</li>
-						<li>
-							<a onclick="window.location='about.html';" class="light-btn trigger text-intro opacity-0 mainButton">KELOMPOK</a>
-						</li>
-					</ul>
-				</nav>
-
-			</div>
-
-			<!-- Social icons -->
-			<div class="social-icons">
-
-
-
-			</div>
-
-		</section>
-		<!-- END - Home/Left Part -->
-
-			<footer>
-
-				<p style="color:white">Dibuat dengan &hearts; oleh Kelompok 7</p>
-
-			</footer>
-
-		</section>
-
-	<!-- * Libraries jQuery, Easing and Bootstrap - Be careful to not remove them * -->
-	<script src="https://unpkg.com/sweetalert2@11.7.5/dist/sweetalert2.all.js"></script>
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-	<script>
-		var sound = new Howl({
-  			src: ['resources/sounds/Primavera.wav'],
-  			autoplay: true,
-  			loop: true,
-  			onplay: function() {
-  		  console.log('Audio started playing.');
-  }
-});
-sound.play();
-
-    // Attach a click event listener to the link with the id "helpButton"
-    document.getElementById('helpButton').addEventListener('click', function() {
-		swal.fire({
-    title: "Selamat Datang di Game Kata",
-    text: "Game Ini memiliki total 20 level, kamu harus menjawab dengan benar",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonText: "Next",
-    cancelButtonText: "Cancel"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // Code to execute when "Hint" button is clicked
-      swal.fire({
-        title: "Cara bermain",
-        text: "Menebak kata yang ada dalam gambar",
-        icon: "question",
-        showCancelButton: true,
-        confirmButtonText: "Next",
-        cancelButtonText: "Cancel"
-      }).then((result) => {
-    if (result.isConfirmed) {
-      // Code to execute when "Hint" button is clicked
-      swal.fire({
-        text: "Maaf Design yang tidak sebarapa, karena game ini bukan dibuat oleh anak IT :)",
-        icon: "success",
-        button: "OK"
-      });
-    } else if (result.dismiss === swal.DismissReason.cancel) {
-      // Code to execute when "Menu" button is clicked
-      console.log("done"); //done
-    }
-  });
-    } else if (result.dismiss === swal.DismissReason.cancel) {
-      // Code to execute when "Menu" button is clicked
-      console.log("done"); //done
-    }
-  });
-});
-
-
-	  </script>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery.easings.min.js"></script>
-	
-	<script src="js/bootstrap.min.js"></script>
-
-	<!-- PhotoSwipe Core JS file -->
-	<script src="js/velocity.min.js"></script> 
-
-	<!-- PhotoSwipe UI JS file -->
-	<script src="js/velocity.ui.min.js"></script> 
-
-	<!-- Slideshow/Image plugin -->
-	<script src="js/vegas.js"></script>
-	<!-- Main JS File -->
-	<script src="js/main.js"></script>
-	<script src="js/status.js"></script>
-	
-	<script>
-	      console.log('Halaman berhasil di muat, silahkan bermain!!');
-    console.meme("don't be a cheater", "stupid people.", "Awkward Penguin", 400, 300);
-        // Add a new history entry when the page loads
         window.history.pushState(null, 'index.html', location.href);
-    
-        // Detect when the user tries to go back
+
         window.onpopstate = function(event) {
-          // Add a new history entry and prevent the user from going back
-          window.history.pushState(null, 'index.html', location.href);
+            window.history.pushState(null, 'index.html', location.href);
         };
-      </script>
-	</body>
+    </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.easings.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/velocity.min.js"></script>
+    <script src="js/velocity.ui.min.js"></script>
+    <script src="js/vegas.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/status.js"></script>
+</body>
 
 </html>

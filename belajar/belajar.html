@@ -3,23 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Handwriting Practice for Kids</title>
+    <title>Belajar menulis</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Handwriting Practice</h1>
+        <h1>Belajar Menulis</h1>
         <div class="example-section">
-            <h2>Example Letter</h2>
+            <h2>Gambar</h2>
             <div class="example-letter">
-                <span>A</span>
+                <img id="exampleImage" src="image1.jpeg" alt="Example Image">
             </div>
+            <button id="prevButton">sebelumnya</button>
+            <button id="nextButton">selanjutnya</button>
         </div>
         <div class="practice-section">
-            <h2>Practice Area</h2>
+            <h2>Area Tulis</h2>
             <canvas id="practiceCanvas"></canvas>
-            <button id="clearButton">Clear</button>
+            <button id="clearButton">Hapus</button>
         </div>
+        <button id="backButton"><a href="../index.html" style="color: white; text-decoration: none;">Kembali ke main menu</a></button>
     </div>
     <script src="scripts.js"></script>
 </body>
