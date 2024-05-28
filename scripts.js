@@ -8,54 +8,48 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let drawing = false;
 
-    drawDashedLetterA();
+    // Menambahkan event listener untuk interaksi sentuhan
+    canvas.addEventListener("touchstart", startDrawing, { passive: false });
+    canvas.addEventListener("touchmove", draw, { passive: false });
+    canvas.addEventListener("touchend", stopDrawing, { passive: false });
 
-    // Mouse events
+    // Event listener untuk mouse tetap ada untuk kompatibilitas desktop
     canvas.addEventListener("mousedown", startDrawing);
     canvas.addEventListener("mousemove", draw);
     canvas.addEventListener("mouseup", stopDrawing);
     canvas.addEventListener("mouseout", stopDrawing);
 
-    // Touch events
-    canvas.addEventListener("touchstart", startDrawingTouch);
-    canvas.addEventListener("touchmove", drawTouch);
-    canvas.addEventListener("touchend", stopDrawingTouch);
-
     clearButton.addEventListener("click", clearCanvas);
 
-    function drawDashedLetterA() {
-        ctx.setLineDash([5, 5]);  // Set dashed line
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = "#87ceeb";
-
-        // Draw "A"
-        ctx.beginPath();
-        ctx.moveTo(200, 50);
-        ctx.lineTo(150, 150);
-        ctx.moveTo(200, 50);
-        ctx.lineTo(250, 150);
-        ctx.moveTo(175, 100);
-        ctx.lineTo(225, 100);
-        ctx.stroke();
-        ctx.setLineDash([]);  // Reset to solid line
+    function getTouchPosition(touchEvent) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+            x: touchEvent.touches[0].clientX - rect.left,
+            y: touchEvent.touches[0].clientY - rect.top
+        };
     }
 
     function startDrawing(event) {
         drawing = true;
-        draw(event);
+        ctx.beginPath();
+        const position = event.type === 'touchstart'? getTouchPosition(event) : { x: event.clientX - canvas.offsetLeft, y: event.clientY - canvas.offsetTop };
+        ctx.moveTo(position.x, position.y);
     }
 
     function draw(event) {
         if (!drawing) return;
+        event.preventDefault();
 
         ctx.lineWidth = 4;
         ctx.lineCap = "round";
         ctx.strokeStyle = "#4682b4";
 
-        ctx.lineTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
+        const position = event.type === 'touchmove'? getTouchPosition(event) : { x: event.clientX - canvas.offsetLeft, y: event.clientY - canvas.offsetTop };
+        ctx.lineTo(position.x, position.y);
         ctx.stroke();
+
         ctx.beginPath();
-        ctx.moveTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
+        ctx.moveTo(position.x, position.y);
     }
 
     function stopDrawing() {
@@ -65,37 +59,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function clearCanvas() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawDashedLetterA();
-    }
-
-    function getTouchPos(canvas, touchEvent) {
-        var rect = canvas.getBoundingClientRect();
-        return {
-            x: touchEvent.touches[0].clientX - rect.left,
-            y: touchEvent.touches[0].clientY - rect.top
-        };
-    }
-
-    function startDrawingTouch(event) {
-        event.preventDefault();
-        drawing = true;
-        var touchPos = getTouchPos(canvas, event);
-        ctx.moveTo(touchPos.x, touchPos.y);
-    }
-
-    function drawTouch(event) {
-        if (!drawing) return;
-        event.preventDefault();
-        var touchPos = getTouchPos(canvas, event);
-        ctx.lineTo(touchPos.x, touchPos.y);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(touchPos.x, touchPos.y);
-    }
-
-    function stopDrawingTouch(event) {
-        event.preventDefault();
-        drawing = false;
-        ctx.beginPath();
     }
 });
